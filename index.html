@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prepositions practice</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap">
+<style>
+:root{--bg:#e9f7ff;--card:#fff;--ink:#14213d;--mute:#5d6b85;--line:#d9e0ee;--ok:#1f9d55;--bad:#d62839;
+--c1:#1e9bf0;--c2:#e5334b;--c3:#fb7c0b;--c4:#2fb457;--c5:#8a4fe0;--c6:#0fa3a3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1424;--card:#18213a;--ink:#f2f5ff;--mute:#9aa8c7;--line:#2b3757}}
+:root[data-theme="dark"]{--bg:#0e1424;--card:#18213a;--ink:#f2f5ff;--mute:#9aa8c7;--line:#2b3757}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:radial-gradient(circle at 8% 8%,#ffd96699 0,transparent 32%),radial-gradient(circle at 92% 18%,#6ee7b766 0,transparent 32%),radial-gradient(circle at 85% 92%,#f9a8d466 0,transparent 38%),radial-gradient(circle at 10% 90%,#c4b5fd66 0,transparent 34%),var(--bg);color:var(--ink);font-family:"Fredoka","Baloo 2","Trebuchet MS",system-ui,sans-serif;min-height:100vh}
+.title{margin:6px 0 10px;text-align:center;font-size:clamp(1.9rem,5.5vw,2.8rem);color:var(--c5);text-shadow:0 3px 0 #ffd966}
+main{max-width:1000px;margin:0 auto;padding:14px}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:1.1rem;padding:4px 0 10px}
+.top span{background:var(--card);border:3px solid var(--c3);border-radius:20px;padding:2px 16px;color:var(--ink);font-weight:600}
+.bar{height:18px;background:var(--card);border:3px solid var(--c1);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c4),var(--c3),var(--c2),var(--c5));transition:width .3s}
+.stage{background:var(--card);border:6px solid var(--ac,var(--c1));box-shadow:0 8px 0 rgba(0,0,0,.12);border-radius:32px;padding:18px;display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:18px;align-items:center}
+.pic{aspect-ratio:1;border-radius:26px;border:4px dashed var(--c3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;position:relative;text-align:center;color:var(--mute);padding:8px}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff}
+.pic.has{border-style:solid}
+.picbtns{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.mini{font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:4px 12px;cursor:pointer;position:relative;z-index:1}
+.sent{font-size:clamp(1.8rem,4.6vw,3rem);line-height:1.2;text-align:center;font-weight:600}
+.gap{display:inline-block;min-width:3.2ch;background:#fff3b0;border:3px dashed var(--c3);border-radius:14px;color:var(--ok);padding:0 .25em;margin:0 .1em}
+.ans{display:grid;gap:10px}
+.ans button{font:inherit;font-size:clamp(1.3rem,3.4vw,1.9rem);font-weight:600;color:#fff;border:0;border-radius:24px;padding:16px 8px;cursor:pointer;box-shadow:inset 0 -8px 0 rgba(0,0,0,.22);transition:transform .1s,opacity .2s}
+.ans button:hover{transform:scale(1.04) rotate(-1deg)}
+.ans button:active{transform:translateY(2px)}
+.ans button:focus-visible,.mini:focus-visible,.nav button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.ans button:nth-child(1){background:var(--c1)}.ans button:nth-child(2){background:var(--c2)}.ans button:nth-child(3){background:var(--c3)}
+.ans button:nth-child(4){background:var(--c4)}.ans button:nth-child(5){background:var(--c5)}.ans button:nth-child(6){background:var(--c6)}
+.ans button.wrong{opacity:.28;animation:sh .3s}
+.ans button.right{background:var(--ok);outline:4px solid var(--ink)}
+.ans button:disabled{cursor:default}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.conf{position:fixed;top:-2rem;font-size:1.9rem;pointer-events:none;z-index:9;animation:fall 1.4s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.msg{min-height:2rem;text-align:center;font-size:1.3rem;margin:12px 0 0;font-weight:600}
+.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+.nav{display:flex;justify-content:center;gap:16px;align-items:center;margin-top:6px;color:var(--mute)}
+.nav button{font:inherit;background:var(--c5);border:0;color:#fff;width:46px;height:46px;border-radius:50%;font-size:1.3rem;cursor:pointer;box-shadow:inset 0 -4px 0 rgba(0,0,0,.22)}
+.end{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:34px 18px;text-align:center}
+.end h1{font-size:2.4rem;margin:0 0 6px}
+.end p{font-size:1.3rem;color:var(--mute);margin:4px 0}
+.big{font:inherit;font-size:1.4rem;font-weight:600;background:var(--c1);color:#fff;border:0;border-radius:14px;padding:12px 28px;margin-top:16px;cursor:pointer;box-shadow:inset 0 -5px 0 rgba(0,0,0,.22)}
+details{margin-top:18px;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px 16px}
+summary{cursor:pointer;font-weight:600;font-size:1.1rem}
+.add{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.add input,.add select{font:inherit;font-size:1rem;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.add input{flex:1 1 260px}
+.list{display:grid;gap:6px;font-size:.95rem;color:var(--mute)}
+.list div{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.hint{font-size:.9rem;color:var(--mute);margin:4px 0}
+@media (max-width:760px){.stage{grid-template-columns:1fr}.pic{aspect-ratio:4/3;max-height:240px}.ans{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1 class="title">🐰 Where is it? 📦</h1>
+  <div class="top"><span id="timer">0:00</span><span id="count"></span></div>
+  <div class="bar"><i id="bar"></i></div>
+  <div id="game"></div>
+
+  <details>
+    <summary>Agregar o editar frases</summary>
+    <p class="hint">Escribe la frase con ___ donde va la preposición. Después, en la tarjeta de esa pregunta, sube su imagen.</p>
+    <div class="add">
+      <input id="newText" placeholder="The dog is ___ the chair." aria-label="Frase">
+      <select id="newAns" aria-label="Respuesta correcta"></select>
+      <button class="mini" id="addBtn">Agregar frase</button>
+    </div>
+    <div class="list" id="custom"></div>
+    <p class="hint">Las imágenes y frases nuevas se guardan solo en este navegador.</p>
+  </details>
+</main>
+
+<script>
+// ===== Frases base: para agregar más, copia una línea y cambia el texto =====
+// img (opcional): ruta de imagen si guardas este archivo en tu computadora, ej. "img/q1.png"
+const PREPS=["in","on","next to","behind","in front of","under"];
+const BASE=[
+ {id:"q1",text:"The rabbit is ___ the box.",answer:"in"},
+ {id:"q2",text:"The cat is ___ the table.",answer:"under"},
+ {id:"q3",text:"The book is ___ the desk.",answer:"on"},
+ {id:"q4",text:"The dog is ___ the house.",answer:"in front of"},
+ {id:"q5",text:"The ball is ___ the sofa.",answer:"behind"},
+ {id:"q6",text:"The girl is ___ the boy.",answer:"next to"},
+ {id:"q7",text:"The bird is ___ the tree.",answer:"on"},
+ {id:"q8",text:"The shoes are ___ the bed.",answer:"under"},
+ {id:"q9",text:"The pencil is ___ the bag.",answer:"in"},
+ {id:"q10",text:"The car is ___ the garage.",answer:"in front of"},
+ {id:"q11",text:"The boy is hiding ___ the door.",answer:"behind"},
+ {id:"q12",text:"The lamp is ___ the sofa.",answer:"next to"}
+];
+let custom=[];try{custom=JSON.parse(localStorage.getItem("pq_custom")||"[]")}catch(e){}
+const all=()=>BASE.concat(custom);
+
+// ===== Imágenes (IndexedDB, por navegador) =====
+const mem={};
+const dbp=new Promise(r=>{try{const q=indexedDB.open("pq",1);q.onupgradeneeded=()=>q.result.createObjectStore("img");q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}});
+async function imgGet(id){const d=await dbp;if(!d)return mem[id]||null;return new Promise(r=>{try{const q=d.transaction("img").objectStore("img").get(id);q.onsuccess=()=>r(q.result||null);q.onerror=()=>r(null)}catch(e){r(null)}})}
+async function imgSet(id,blob){mem[id]=blob;const d=await dbp;if(!d)return;try{blob?d.transaction("img","readwrite").objectStore("img").put(blob,id):d.transaction("img","readwrite").objectStore("img").delete(id)}catch(e){}}
+
+// ===== Juego =====
+let i=0,score=0,tries=0,locked=false,t0=Date.now(),tick;
+const $=s=>document.querySelector(s),game=$("#game");
+function clock(){const s=Math.floor((Date.now()-t0)/1000);$("#timer").textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
+function restart(){i=0;score=0;t0=Date.now();clearInterval(tick);tick=setInterval(clock,1000);clock();show()}
+async function show(){
+  const qs=all();
+  if(i>=qs.length){clearInterval(tick);$("#bar").style.width="100%";$("#count").textContent="";
+    game.innerHTML=`<div class="end"><h1>🏆 ¡Muy bien! 🎉</h1><p>Acertaste a la primera ${score} de ${qs.length}</p><p>Tiempo: ${$("#timer").textContent}</p><button class="big" id="again">Practicar otra vez</button></div>`;
+    $("#again").onclick=restart;return}
+  const q=qs[i];tries=0;locked=false;game.style.setProperty("--ac",["#1e9bf0","#e5334b","#fb7c0b","#2fb457","#8a4fe0","#0fa3a3"][i%6]);
+  $("#count").textContent=(i+1)+" of "+qs.length;$("#bar").style.width=(i/qs.length*100)+"%";
+  const [a,b]=q.text.split("___");
+  game.innerHTML=`<div class="stage">
+    <div class="pic" id="pic"></div>
+    <div class="sent">${esc(a)}<span class="gap" id="gap">&nbsp;&nbsp;&nbsp;</span>${esc(b||"")}</div>
+    <div class="ans" id="ans">${PREPS.map(p=>`<button data-p="${p}">${p}</button>`).join("")}</div>
+  </div>
+  <p class="msg" id="msg"></p>
+  <div class="nav"><button id="prev" aria-label="Anterior">◀</button><span>${i+1} of ${qs.length}</span><button id="next" aria-label="Siguiente">▶</button></div>
+  <div class="picbtns" id="picbtns"></div>`;
+  $("#prev").onclick=()=>{if(i>0){i--;show()}};
+  $("#next").onclick=()=>{i++;show()};
+  $("#ans").onclick=e=>{const p=e.target.dataset&&e.target.dataset.p;if(p&&!locked)pick(e.target,p,q)};
+  drawPic(q);
+}
+async function drawPic(q){
+  const pic=$("#pic");let src=null;const blob=await imgGet(q.id);
+  if(blob)src=URL.createObjectURL(blob);else if(q.img)src=q.img;
+  pic.classList.toggle("has",!!src);
+  pic.innerHTML=(src?`<img alt="" src="${src}" onerror="this.remove()">`:"<span>Sin imagen</span>");$("#picbtns").innerHTML=
+   `<button class="mini" id="up">${blob?"Cambiar imagen":"Subir imagen"}</button>`+(blob?`<button class="mini" id="rm">Quitar</button>`:"");
+  $("#up").onclick=()=>{const f=document.createElement("input");f.type="file";f.accept="image/*";f.onchange=async()=>{if(f.files[0]){await imgSet(q.id,f.files[0]);drawPic(q)}};f.click()};
+  const rm=$("#rm");if(rm)rm.onclick=async()=>{await imgSet(q.id,null);drawPic(q)};
+}
+function pick(btn,p,q){
+  const msg=$("#msg");
+  if(p===q.answer){
+    locked=true;btn.classList.add("right");if(tries===0)score++;
+    $("#gap").textContent=p;burst();msg.textContent="¡Correcto! ⭐";msg.className="msg ok";
+    document.querySelectorAll(".ans button").forEach(b=>b.disabled=true);
+    setTimeout(()=>{i++;show()},1100);
+  }else{
+    tries++;btn.classList.add("wrong");btn.disabled=true;msg.textContent="Intenta otra vez 💪";msg.className="msg bad";
+  }
+}
+function burst(){const E=["⭐","🎉","🌟","🎈","✨","🍭"];for(let k=0;k<22;k++){const s=document.createElement("span");s.className="conf";s.textContent=E[k%6];s.style.left=Math.random()*95+"vw";s.style.animationDelay=Math.random()*.3+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),1800)}}
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+
+// ===== Agregar frases =====
+$("#newAns").innerHTML=PREPS.map(p=>`<option>${p}</option>`).join("");
+function drawCustom(){
+  $("#custom").innerHTML=custom.map((c,k)=>`<div><span>${esc(c.text)} → ${c.answer}</span><button class="mini" data-k="${k}">Borrar</button></div>`).join("");
+}
+function saveCustom(){try{localStorage.setItem("pq_custom",JSON.stringify(custom))}catch(e){}drawCustom()}
+$("#addBtn").onclick=()=>{
+  const t=$("#newText").value.trim();
+  if(!t.includes("___")){$("#newText").focus();$("#newText").placeholder="Incluye ___ en la frase";return}
+  custom.push({id:"c"+Date.now(),text:t,answer:$("#newAns").value});
+  $("#newText").value="";saveCustom();
+  i=all().length-1;show();
+};
+$("#custom").onclick=e=>{const k=e.target.dataset&&e.target.dataset.k;if(k!==undefined){custom.splice(+k,1);saveCustom();i=0;show()}};
+drawCustom();restart();
+</script>
+</body>
+</html>
